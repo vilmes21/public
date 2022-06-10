@@ -16,21 +16,31 @@ function getAllSupportedMimeTypes(...mediaTypes) {
     "opus",
   ];
 
-  return [
-    ...new Set(
-      FILE_EXTENSIONS.flatMap((ext) =>
-        CODECS.flatMap((codec) =>
-          mediaTypes.flatMap((mediaType) => [
-            `${mediaType}/${ext};codecs:${codec}`,
-            `${mediaType}/${ext};codecs=${codec}`,
-            `${mediaType}/${ext};codecs:${codec.toUpperCase()}`,
-            `${mediaType}/${ext};codecs=${codec.toUpperCase()}`,
-            `${mediaType}/${ext}`,
-          ])
-        )
-      )
-    ),
-  ].filter((variation) => MediaRecorder.isTypeSupported(variation));
+  const rawArr: string[] = [];
+
+  FILE_EXTENSIONS.forEach((ext) =>
+    CODECS.forEach((codec) =>
+      mediaTypes.forEach((mediaType) => {
+        const items = [
+          `${mediaType}/${ext};codecs:${codec}`,
+          `${mediaType}/${ext};codecs=${codec}`,
+          `${mediaType}/${ext};codecs:${codec.toUpperCase()}`,
+          `${mediaType}/${ext};codecs=${codec.toUpperCase()}`,
+          `${mediaType}/${ext}`,
+        ];
+
+        items.forEach((x) => {
+          rawArr.push(x);
+        });
+      })
+    )
+  );
+
+  const _set: Set<string> = new Set(rawArr);
+
+  return Array.from(_set).filter((variation) =>
+    MediaRecorder.isTypeSupported(variation)
+  );
 }
 
 const showInfo = (infoStr) => {
