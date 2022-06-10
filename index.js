@@ -52,7 +52,6 @@ const is_iOS_firefox = () => {
 
 const init = () => {
   try {
-    throw Error("FOOOFOF");
     const list1 = getAllSupportedMimeTypes("video");
 
     const allInfo = {
