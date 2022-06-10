@@ -33,9 +33,6 @@ function getAllSupportedMimeTypes(...mediaTypes) {
   ].filter((variation) => MediaRecorder.isTypeSupported(variation));
 }
 
-const list1 = getAllSupportedMimeTypes("video");
-list1.map((x) => console.log(x));
-
 const showInfo = (infoStr) => {
   document.getElementById("info_js").textContent = infoStr;
 };
@@ -53,12 +50,24 @@ const is_iOS_firefox = () => {
   return Boolean(navigator.userAgent.match("FxiOS"));
 };
 
-const allInfo = {
-  is_iOS_chrome: is_iOS_chrome(),
-  is_iOS_firefox: is_iOS_firefox(),
-  supports: list1,
+const init = () => {
+  try {
+    throw Error("FOOOFOF");
+    const list1 = getAllSupportedMimeTypes("video");
+
+    const allInfo = {
+      is_iOS_chrome: is_iOS_chrome(),
+      is_iOS_firefox: is_iOS_firefox(),
+      supports: list1,
+    };
+
+    showInfo(JSON.stringify(allInfo, null, 2));
+
+    alert("Pls select-all then copy the array info");
+  } catch (e) {
+    alert("e.message: " + e.message + " e: " + String(e));
+    console.log("caught", e);
+  }
 };
 
-showInfo(JSON.stringify(allInfo, null, 2));
-
-alert("Pls select-all then copy the array info");
+init();
