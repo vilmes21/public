@@ -4,14 +4,166 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Verification</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>This browser supports mimeTypes</h1>
-    <pre class="" id="info_js">
-      If js was successful, you wouldn't see this message.
-    </pre>
-    
-    <script language="javascript" src="dist/index.js"></script>
+    <div id="modal_js" class="hidden_js modal1 positionAbsolute">
+      <div id="counter_js" class="boldFont modaltxt"></div>
+    </div>
+    <div id="initView_js" class="wrapper">
+      <h1 class="pgtitle">Video verification</h1>
+
+      <div class="sides">
+        <div id="left_js" class="left">
+          <div class="videobox">
+            <div
+              id="timerBadge_js"
+              class="recordingBadge positionAbsolute hidden_js"
+            >
+              <img
+                class="blink recordingBadge__icon positionRelative"
+                src="https://video-verifications.s3.us-west-2.amazonaws.com/start-icon.svg"
+              />
+
+              Recording
+              <span id="timerDisplay_js" class="timer"> 00:00 </span>
+            </div>
+
+            <video playsinline muted autoplay id="videoView_js" class="videoElem"></video>
+          </div>
+
+          <div class="controlsection">
+            <button class="opacity0 boldFont submitBtn ">Submit Video</button>
+
+            <div id="startRecording_js" class="controlgroup pointercursor">
+              <div class="controlgroup__item textAlignCenter">
+                <img
+                  title="Start recording"
+                  class="mediacontrol"
+                  src="https://video-verifications.s3.us-west-2.amazonaws.com/start-icon.svg"
+                />
+              </div>
+
+              <div
+                class="controlgroup__item textAlignCenter controlgroup__item--text"
+              >
+                Record
+              </div>
+            </div>
+
+            <div
+              id="stopRecording_js"
+              class="controlgroup pointercursor blink hidden_js"
+            >
+              <div class="controlgroup__item textAlignCenter">
+                <img
+                  title="Finish recording"
+                  class="mediacontrol"
+                  src="https://video-verifications.s3.us-west-2.amazonaws.com/stop-icon.svg"
+                />
+              </div>
+
+              <div
+                class="controlgroup__item textAlignCenter controlgroup__item--text"
+              >
+                Finish recording
+              </div>
+            </div>
+
+            <button
+              id="submitvideobtn_js"
+              class=" boldFont submitBtn opacity0_js"
+              disabled
+            >
+              Submit Video
+            </button>
+          </div>
+        </div>
+
+        <div class="right">
+          <div class="scriptTitle">Script</div>
+
+          <div class="lowerRight">
+
+            <div id="writeDownHint_js" class="writeDownHint hidden_js">
+              For best experience on this page, we recommend <strong>FireFox</strong> or <strong>Google Chrome</strong>. <br />Please copy the script below on paper, and read it while recording. 
+              
+                <strong>
+                  During recording, you may not see it on the screen.
+                </strong>
+            </div>
+            
+            <div>
+              Please read the following during the recording:
+
+              <div class="boldFont">
+                <p class="video-text-p">
+                  <ul id="speech_js" class="vide-text-li-ul">
+                    <!-- To fill by js -->
+                  </ul>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="badBrowserSection_js" class="hidden_js">
+        <form enctype="multipart/form-data" id="badBrowserForm_js">
+          <label class="devBgPink" for="inputCapture_js">
+  
+          <div class="controlgroup pointercursor">
+            <div class="controlgroup__item textAlignCenter">
+              <img
+                title="Start recording"
+                class="badBrowserStartIcon"
+                src="https://video-verifications.s3.us-west-2.amazonaws.com/start-icon.svg"
+              />
+            </div>
+        
+            <div
+              class="controlgroup__item textAlignCenter controlgroup__item--mobiletext"
+            >
+              Record
+            </div>
+          </div>
+        </label>
+  
+          <input
+            type="file"
+            name="file"
+            id="inputCapture_js"
+            class="hidden_js"
+            accept="video/*"
+            capture="user"
+          />
+
+          <div id="fileHint_js" class="textAlignCenter fileHint hidden_js">
+            Your video is ready for upload.
+          </div>
+  
+          <div class="fullWidth textAlignCenter badBrowserSubmitWrap">
+            <button type="submit" id="badFormSubmit_js" class="submitBtn submitBtn-bad hidden_js">
+              Upload Video
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="doneView_js" class="hidden_js textAlignCenter done">
+      <img
+        src="https://video-verifications.s3.us-west-2.amazonaws.com/upload-done.png"
+        alt="Success"
+        class="marginAuto checkIcon"
+      />
+      <div class="boldFont doneText">
+        Your video has been submitted successfully. Thank you.
+      </div>
+    </div>
+    <script src="dist/index.min.js"></script>
   </body>
 </html>
